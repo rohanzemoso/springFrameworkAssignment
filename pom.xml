@@ -17,6 +17,9 @@
 
     <sonar.exclusions>
       **/com/example/project/dao/**,
+      **/com/example/project/config/**,
+      **/com/example/project/model/**,
+      **/com/example/project/util/**
     </sonar.exclusions>
 
   </properties>
