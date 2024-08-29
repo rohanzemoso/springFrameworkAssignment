@@ -14,12 +14,14 @@
     <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+
     <sonar.exclusions>
       **/src/main/java/dao/*.java,
       **/src/main/java/util/*.java,
       **/src/main/java/config/*.java,
       **/src/main/java/model/*.java
     </sonar.exclusions>
+
   </properties>
   <dependencies>
     <dependency>
