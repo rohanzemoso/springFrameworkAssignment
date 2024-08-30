@@ -2,23 +2,22 @@ package com.example.project.service;
 
 import com.example.project.dao.CityDao;
 import com.example.project.model.City;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-class CityServiceImplTest {
+public class CityServiceImplTest {
 
     @Mock
     private CityDao cityDao;
@@ -26,20 +25,20 @@ class CityServiceImplTest {
     @InjectMocks
     private CityServiceImpl cityService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
+    @Before
+    public void setUp() {
+        // No need for MockitoAnnotations.openMocks(this); when using @RunWith(MockitoJUnitRunner.class)
     }
 
     @Test
-    void testSaveCity() {
+    public void testSaveCity() {
         City city = new City();
         cityService.saveCity(city);
         verify(cityDao, times(1)).saveCity(city);
     }
 
     @Test
-    void testListCityByCountryId() {
+    public void testListCityByCountryId() {
         int countryId = 1;
         List<City> expectedCities = Arrays.asList(new City(), new City());
         when(cityDao.listCityByCountryId(countryId)).thenReturn(expectedCities);
@@ -52,7 +51,7 @@ class CityServiceImplTest {
     }
 
     @Test
-    void testGetCityById() {
+    public void testGetCityById() {
         int cityId = 1;
         City expectedCity = new City();
         when(cityDao.getCityById(cityId)).thenReturn(expectedCity);
@@ -64,17 +63,16 @@ class CityServiceImplTest {
     }
 
     @Test
-    void testUpdateCity() {
+    public void testUpdateCity() {
         City city = new City();
         cityService.updateCity(city);
         verify(cityDao, times(1)).updateCity(city);
     }
 
     @Test
-    void testDeleteCity() {
+    public void testDeleteCity() {
         int cityId = 1;
         cityService.deleteCity(cityId);
         verify(cityDao, times(1)).deleteCity(cityId);
     }
 }
-

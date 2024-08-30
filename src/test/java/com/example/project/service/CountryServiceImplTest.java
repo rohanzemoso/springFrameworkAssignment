@@ -2,23 +2,22 @@ package com.example.project.service;
 
 import com.example.project.dao.CountryDao;
 import com.example.project.model.Country;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-class CountryServiceImplTest {
+public class CountryServiceImplTest {
 
     @Mock
     private CountryDao countryDao;
@@ -26,20 +25,20 @@ class CountryServiceImplTest {
     @InjectMocks
     private CountryServiceImpl countryService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
+    @Before
+    public void setUp() {
+
     }
 
     @Test
-    void testSaveCountry() {
+    public void testSaveCountry() {
         Country country = new Country();
         countryService.saveCountry(country);
         verify(countryDao, times(1)).saveCountry(country);
     }
 
     @Test
-    void testListCountry() {
+    public void testListCountry() {
         List<Country> expectedCountries = Arrays.asList(new Country(), new Country());
         when(countryDao.listCountry()).thenReturn(expectedCountries);
 
@@ -51,7 +50,7 @@ class CountryServiceImplTest {
     }
 
     @Test
-    void testGetCountryById() {
+    public void testGetCountryById() {
         int countryId = 1;
         Country expectedCountry = new Country();
         when(countryDao.getCountryById(countryId)).thenReturn(expectedCountry);
@@ -63,14 +62,14 @@ class CountryServiceImplTest {
     }
 
     @Test
-    void testUpdateCountry() {
+    public void testUpdateCountry() {
         Country country = new Country();
         countryService.updateCountry(country);
         verify(countryDao, times(1)).updateCountry(country);
     }
 
     @Test
-    void testDeleteCountry() {
+    public void testDeleteCountry() {
         int countryId = 1;
         countryService.deleteCountry(countryId);
         verify(countryDao, times(1)).deleteCountry(countryId);
