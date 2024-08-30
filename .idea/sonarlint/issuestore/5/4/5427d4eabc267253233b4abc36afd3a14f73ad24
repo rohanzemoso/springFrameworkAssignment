@@ -1,7 +1,5 @@
 
-c
-java:S1192."HDefine a constant instead of duplicating this literal "country" 3 times.(ÄÃ¤¤øÿÿÿÿ
-[
-java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(ž¶â·ûÿÿÿÿ
-V
-java:S4684R"@Replace this persistent entity with a simple POJO or DTO object.(¢º¨¾
+b
+java:S4684$"@Replace this persistent entity with a simple POJO or DTO object.(ž¶â·ûÿÿÿÿ8¨ìŒ‰š2
+]
+java:S4684W"@Replace this persistent entity with a simple POJO or DTO object.(¢º¨¾8‰µ‡‰š2

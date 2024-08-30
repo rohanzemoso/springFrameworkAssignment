@@ -33,3 +33,7 @@ u
 Esrc/test/java/com/example/project/service/CountryServiceImplTest.java,f\f\ff6b2738c9ab442fa256153bb044d6769574260a
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+m
+=src/main/java/com/example/project/config/HibernateConfig.java,b\4\b44823c64b9d8a91da1f9c4fc97c444b8775b7f3
+a
+1src/main/java/com/example/project/model/City.java,3\4\340c59c55029d148fc7e6765b418d30ba9b7156c

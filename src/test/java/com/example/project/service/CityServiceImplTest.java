@@ -9,11 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -26,9 +26,7 @@ public class CityServiceImplTest {
     private CityServiceImpl cityService;
 
     @Before
-    public void setUp() {
-        // No need for MockitoAnnotations.openMocks(this); when using @RunWith(MockitoJUnitRunner.class)
-    }
+    public void setUp() {}
 
     @Test
     public void testSaveCity() {
@@ -63,6 +61,19 @@ public class CityServiceImplTest {
     }
 
     @Test
+    public void testGetCityById_whenCityIdNotPresent_shouldReturnNull() {
+        int cityId = 1;
+
+        when(cityDao.getCityById(cityId)).thenReturn(null);
+
+        City actualCity = cityService.getCityById(cityId);
+
+        assertNull(actualCity);
+
+        verify(cityDao, times(1)).getCityById(cityId);
+    }
+
+    @Test
     public void testUpdateCity() {
         City city = new City();
         cityService.updateCity(city);
@@ -73,6 +84,20 @@ public class CityServiceImplTest {
     public void testDeleteCity() {
         int cityId = 1;
         cityService.deleteCity(cityId);
+        verify(cityDao, times(1)).deleteCity(cityId);
+    }
+
+    @Test
+    public void testDeleteCity_whenCityIdNotPresent_shouldThrowException() {
+        int cityId = 1;
+        doThrow(new EntityNotFoundException("City not found with id: " + cityId))
+                .when(cityDao).deleteCity(cityId);
+        try {
+            cityService.deleteCity(cityId);
+            fail("expected EntityNotFoundException to be thrown");
+        } catch (EntityNotFoundException e) {
+            assertEquals("City not found with id: " + cityId, e.getMessage());
+        }
         verify(cityDao, times(1)).deleteCity(cityId);
     }
 }
