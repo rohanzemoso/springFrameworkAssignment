@@ -12,8 +12,12 @@ import java.util.List;
 @Transactional
 public class CountryServiceImpl implements CountryService {
 
+    private final CountryDao countryDao;
+
     @Autowired
-    private CountryDao countryDao;
+    public CountryServiceImpl(CountryDao countryDao) {
+        this.countryDao = countryDao;
+    }
 
     @Override
     public void saveCountry(Country country) {

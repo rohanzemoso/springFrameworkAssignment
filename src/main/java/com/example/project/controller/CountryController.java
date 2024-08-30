@@ -14,11 +14,16 @@ import java.util.List;
 @Controller
 public class CountryController {
 
-    @Autowired
-    private CountryService countryService;
+    private static final String COUNTRY = "country";
+
+    private final CountryService countryService;
+    private final CityService cityService;
 
     @Autowired
-    private CityService cityService;
+    public CountryController(CountryService countryService, CityService cityService) {
+        this.countryService = countryService;
+        this.cityService = cityService;
+    }
 
     @GetMapping("/list")
     public String listCountries(Model model) {
@@ -43,14 +48,14 @@ public class CountryController {
     @GetMapping("/form")
     public String showFormForAddCountry(Model model) {
         Country country = new Country();
-        model.addAttribute("country", country);
+        model.addAttribute(COUNTRY, country);
         return "countryForm";
     }
 
     @GetMapping("/updateForm")
     public String showFormForUpdateCountry(@RequestParam("countryId") int id, Model model) {
         Country country = countryService.getCountryById(id);
-        model.addAttribute("country", country);
+        model.addAttribute(COUNTRY, country);
         return "updateCountry";
     }
 
@@ -64,7 +69,7 @@ public class CountryController {
     public String listCities(@RequestParam("countryId") int countryId, Model model) {
         Country country = countryService.getCountryById(countryId);
         List<City> cities = cityService.listCityByCountryId(countryId);
-        model.addAttribute("country", country);
+        model.addAttribute(COUNTRY, country);
         model.addAttribute("cities", cities);
         return "listCities";
     }

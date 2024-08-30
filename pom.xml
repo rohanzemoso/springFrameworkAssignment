@@ -19,7 +19,8 @@
       **/com/example/project/dao/**,
       **/com/example/project/config/**,
       **/com/example/project/model/**,
-      **/com/example/project/util/**
+      **/com/example/project/util/**,
+      **/src/main/webapp/WEB-INF/jsp/**
     </sonar.exclusions>
 
   </properties>

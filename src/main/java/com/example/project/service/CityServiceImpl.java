@@ -12,8 +12,12 @@ import java.util.List;
 @Transactional
 public class CityServiceImpl implements CityService {
 
+    private final CityDao cityDao;
+
     @Autowired
-    private CityDao cityDao;
+    public CityServiceImpl(CityDao cityDao) {
+        this.cityDao = cityDao;
+    }
 
     @Override
     public void saveCity(City city) {
